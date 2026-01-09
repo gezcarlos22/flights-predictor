@@ -10,13 +10,8 @@ public record AirportData(
         String airportName,
         String countryName,
         String cityName,
-
-        @NotNull
         Float latitude,
-
-        @NotNull
         Float longitude,
-
         Double elevation,
         String timeZone,
         String googleMaps
@@ -40,11 +35,8 @@ public record AirportData(
                 airport.getLocation().lon() != null ? airport.getLocation().lon() : null,
                 airport.getElevation().meter() != null ? airport.getElevation().meter() : null,
                 airport.getTimezone(),
-                airport.getGoogleMaps().googleMaps() != null
-                        ? GoogleMapsUrlBuilder.buildGoogleMapURl(
-                                airport.getLocation().lat(),
-                                airport.getLocation().lon()
-                            )
+                airport.getGoogleMaps() != null
+                        ? airport.getGoogleMaps().googleMaps()
                         : null
         );
     }

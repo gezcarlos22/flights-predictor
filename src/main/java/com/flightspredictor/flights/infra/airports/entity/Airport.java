@@ -1,6 +1,7 @@
 package com.flightspredictor.flights.infra.airports.entity;
 
 import com.flightspredictor.flights.infra.airports.dto.AirportData;
+import com.flightspredictor.flights.infra.airports.util.GoogleMapsUrlBuilder;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -49,6 +50,6 @@ public class Airport {
         this.latitude = data.latitude();
         this.elevation = data.elevation();
         this.timeZone = data.timeZone();
-        this.googleMaps = data.googleMaps();
+        this.googleMaps = GoogleMapsUrlBuilder.buildGoogleMapURl(latitude, longitude);
     }
 }

@@ -31,7 +31,7 @@ public class AirportResponse {
     Location location;
     Elevation elevation;
 
-    @JsonProperty("timaZone")
+    @JsonProperty("timeZone")
     String timezone;
 
     GoogleMaps googleMaps;

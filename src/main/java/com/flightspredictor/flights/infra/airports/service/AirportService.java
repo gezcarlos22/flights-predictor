@@ -5,10 +5,8 @@ import com.flightspredictor.flights.infra.airports.dto.AirportData;
 import com.flightspredictor.flights.infra.airports.entity.Airport;
 import com.flightspredictor.flights.infra.airports.repository.AirportRepository;
 import com.flightspredictor.flights.infra.airports.validations.IAirportsValidations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
@@ -25,7 +23,6 @@ public class AirportService {
         this.validations = validations;
     }
 
-    @Transactional
     public Airport getAirport (String iata) {
 
         // Busca primero el aeropuerto en la base de datos si ya existe
