@@ -24,4 +24,7 @@ public interface AirportRepository extends JpaRepository<Airport, Long> {
      *         false en caso contrario
      */
     boolean existsByAirportIataIgnoreCase(String airportIata);
+    
+    Optional<Airport> findByAirportNameContainingIgnoreCase(String name);
+    Optional<Airport> findByCityNameContainingIgnoreCase(String cityName);
 }

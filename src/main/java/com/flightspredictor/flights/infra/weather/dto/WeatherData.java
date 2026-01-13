@@ -1,5 +1,6 @@
 package com.flightspredictor.flights.infra.weather.dto;
 
+import com.flightspredictor.flights.infra.weather.dto.external.WeatherResponse;
 import java.time.LocalDateTime;
 
 /**
@@ -7,25 +8,19 @@ import java.time.LocalDateTime;
  * Este DTO abstrae los detalles de la API externa y proporciona una interfaz limpia
  */
 public record WeatherData(
+        String iataCode,                    // Código IATA del aeropuerto
+        String airportName,                 // Nombre del aeropuerto
         String cityName,                    // Nombre de la ciudad consultada
+        String country,                     // País donde se encuentra la ciudad
         Double latitude,                    // Coordenada de latitud
         Double longitude,                   // Coordenada de longitud
         LocalDateTime measurementTime,      // Momento de la medición convertido a LocalDateTime
         Double temperatureCelsius,          // Temperatura en grados Celsius
         Long humidityPercentage,            // Humedad relativa en porcentaje (0-100)
         Double windSpeedKmh,                // Velocidad del viento en kilómetros por hora
-        String country                      // País donde se encuentra la ciudad
+        Double pressure,                    // Presión atmosférica en milibares
+        WeatherResponse.CurrentWeather.Condition condition  // Objeto "condition" de la API
 ) {
-    
-    /**
-     * Método de conveniencia para obtener una descripción textual del clima
-     * @return String con resumen de las condiciones meteorológicas
-     */
-    public String getWeatherSummary() {
-        return String.format("Temperatura: %.1f°C, Humedad: %d%%, Viento: %.1f km/h", 
-                           temperatureCelsius, humidityPercentage, windSpeedKmh);
-    }
-    
     /**
      * Método para determinar si las condiciones son favorables para vuelos
      * @return true si las condiciones son buenas, false si hay condiciones adversas

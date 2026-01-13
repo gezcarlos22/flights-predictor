@@ -8,6 +8,7 @@ import com.flightspredictor.flights.domain.airports.validations.IAirportsValidat
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AirportService {
@@ -53,6 +54,21 @@ public class AirportService {
                     return repository.save(airport);
 
                 });
+    }
+
+    public Airport findAirportBySearchTerm(String searchTerm) {
+        if (searchTerm == null || searchTerm.trim().isEmpty()) {
+            return null;
+        }
+
+        String term = searchTerm.trim();
+        
+        // Buscar por IATA (3 caracteres)
+        if (term.length() == 3) {
+            return repository.findByAirportIata(term.toUpperCase())
+                    .orElse(null);
+        }
+        return null;
     }
 
 }
