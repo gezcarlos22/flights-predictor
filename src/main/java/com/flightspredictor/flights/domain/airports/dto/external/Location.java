@@ -1,7 +1,9 @@
 package com.flightspredictor.flights.domain.airports.dto.external;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public record Location(
-        Float lat,
-        Float lon
+        @JsonProperty("lat") Double lat,
+        @JsonProperty("lon") Double lon
 ) {
 }
